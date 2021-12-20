@@ -12,9 +12,7 @@ pipeline {
             }
         }
         stage('puppet certificate') {
-            when {
-                branch 'master'
-            }
+           
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -25,9 +23,7 @@ pipeline {
             }
         }
         stage('trigger puppet') {
-            when {
-                branch 'master'
-            }
+            
             steps {
                 script {
                     //docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -40,12 +36,8 @@ pipeline {
             } 
         }
         stage('Deploy') {
-            when {
-                branch 'master'
-            }
-            environment { 
-                CANARY_REPLICAS = 1
-            }
+            
+            
             steps {
                  //kubernetesDeploy(
                     //kubeconfigId: 'kubeconfig',
