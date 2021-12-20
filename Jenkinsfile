@@ -42,8 +42,7 @@ pipeline {
                     //configs: 'train-schedule-kube-canary.yml',
                     //enableConfigSubstitution: true
               //  )
-                sh './gradlew build --no-daemon
-                sh 'echo Hello, World!'
+               
             }
         }
         
