@@ -42,6 +42,7 @@ pipeline {
                     //configs: 'train-schedule-kube-canary.yml',
                     //enableConfigSubstitution: true
               //  )
+                docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login')
                 echo"hello"
                
             }
