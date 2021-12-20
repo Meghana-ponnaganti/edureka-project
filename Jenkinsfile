@@ -28,7 +28,10 @@ pipeline {
                         //app.push("${env.BUILD_NUMBER}")
                         //app.push("latest") 
                    // } 
-                    sh 'echo Hello, World!'
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
+                    
                 } 
                 
             } 
@@ -43,9 +46,7 @@ pipeline {
                     //enableConfigSubstitution: true
               //  )
                 //docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login')
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "exit 1"
-                }
+                sh 'echo Hello, World!'
             }
         }
         
