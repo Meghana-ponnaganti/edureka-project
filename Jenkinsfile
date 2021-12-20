@@ -1,14 +1,16 @@
 pipeline {
     agent any
+
     stages {
-        stage('puppet agent') {
+        stage('puppet config') {
             steps {
                 echo 'Running build automation'
-               
+                //sh './gradlew build --no-daemon'
+                //archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
         stage('puppet certificate') {
-           
+            
             steps {
                 script {
                     //app = docker.build(DOCKER_IMAGE_NAME)
@@ -18,11 +20,11 @@ pipeline {
                 }
             }
         }
-        stage('trigger puppet') {
-            
+        stage('Puppet trigger') {
+        
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                    //docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
                         //app.push("${env.BUILD_NUMBER}")
                         //app.push("latest") 
                    // } 
@@ -32,16 +34,18 @@ pipeline {
             } 
         }
         stage('Deploy') {
-            
+  
             
             steps {
                  //kubernetesDeploy(
                     //kubeconfigId: 'kubeconfig',
                     //configs: 'train-schedule-kube-canary.yml',
                     //enableConfigSubstitution: true
-                //)
+              //  )
+                sh './gradlew build --no-daemon
                 sh 'echo Hello, World!'
             }
         }
+        
     }
 }
