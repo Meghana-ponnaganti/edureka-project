@@ -8,8 +8,7 @@ pipeline {
         stage('puppet agent') {
             steps {
                 echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+               
             }
         }
         stage('puppet certificate') {
