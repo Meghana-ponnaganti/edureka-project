@@ -43,9 +43,9 @@ pipeline {
                     //enableConfigSubstitution: true
               //  )
                 //docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login')
-                echo"hello"
-                app.push("latest") 
-               
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
             }
         }
         
